@@ -1,6 +1,8 @@
 package com.study.shop.domain;
 
 
+import org.apache.ibatis.annotations.Mapper;
+
 /**
  *      用户信息表
  *     `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -9,6 +11,7 @@ package com.study.shop.domain;
  *     `email` VARCHAR(30) NOT NULL DEFAULT '' COMMENT '用户邮箱',
  *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_user' COMMENT '权限',
  */
+
 public class User {
 
     private int id;

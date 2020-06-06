@@ -8,6 +8,7 @@ package com.study.shop.domain;
  *     `email` varchar(30) NOT NULL DEFAULT '' COMMENT '管理员邮箱',
  *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_admin' COMMENT '权限',
  */
+
 public class Admin {
 
     private int id;
