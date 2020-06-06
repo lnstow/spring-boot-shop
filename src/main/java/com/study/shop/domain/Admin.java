@@ -1,15 +1,14 @@
 package com.study.shop.domain;
 
-
 /**
- *      用户信息表
+ *      管理员信息表
  *     `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
- *     `username` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '用户名',
- *     `password` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '用户密码',
- *     `email` VARCHAR(30) NOT NULL DEFAULT '' COMMENT '用户邮箱',
- *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_user' COMMENT '权限',
+ *     `username` varchar(20) NOT NULL DEFAULT '' COMMENT '管理员账号',
+ *     `password` varchar(20) NOT NULL DEFAULT '' COMMENT '管理员密码',
+ *     `email` varchar(30) NOT NULL DEFAULT '' COMMENT '管理员邮箱',
+ *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_admin' COMMENT '权限',
  */
-public class User {
+public class Admin {
 
     private int id;
     private String username;
@@ -59,7 +58,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Admin{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
