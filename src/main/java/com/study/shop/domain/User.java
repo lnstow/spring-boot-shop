@@ -1,8 +1,5 @@
 package com.study.shop.domain;
 
-
-import org.apache.ibatis.annotations.Mapper;
-
 /**
  *      用户信息表
  *     `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
