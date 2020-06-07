@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>主页</title>
-    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/index/index.css}">
 </head>
 
 <body>
@@ -14,7 +15,11 @@
             <div class="div111">
                 <p>网上超市logo</p>
             </div>
-            <div class="div112">用户登录</div>
+            <div class="div112">
+                <a th:href="@{/userLogin}">用户登录</a>
+                <a th:href="@{/userRegistered}">用户注册</a>
+            </div>
+
             <div class="div113">搜索</div>
         </div>
     </div>
