@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 放行
                 .antMatchers("/").permitAll()
                 // 需要对static文件夹下静态资源进行统一放行
-                .antMatchers("/login/**").permitAll().antMatchers("/detail/common/**").hasRole("common")
+                .antMatchers("/templates/login/**").permitAll().antMatchers("/detail/common/**").hasRole("common")
                 .antMatchers("/detail/vip/**").hasRole("vip").anyRequest().authenticated();
         // .and()
         // .formLogin();
