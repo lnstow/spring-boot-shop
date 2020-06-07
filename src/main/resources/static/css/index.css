@@ -36,6 +36,10 @@ div {
 .div21 {
     height: 800px;
     /* height: auto; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
     background-color: slategray;
 }
 
@@ -69,15 +73,8 @@ div {
     left: 300px;
 }
 
-
-.div211,
-.div212,
-.div213 {
-    position: absolute;
-}
-
 .div211 {
-    top: 15px;
-    left: 15px;
+    margin: 20px;
     background-color: aliceblue;
+    /* position: relative; */
 }

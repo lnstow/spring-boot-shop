@@ -35,3 +35,6 @@ CREATE TABLE IF NOT EXISTS `product` (
     -- `pics` TEXT COMMENT '图片集合',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '商品表';
+
+
+insert into `product`(`title`,`cover`,`num`,`price`) values ('西瓜','https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180524/95e445560f9c4f5494aa0a304635ffce.jpeg','100','20.0'),('苹果','https://m.360buyimg.com/mobilecms/s750x750_jfs/t2086/31/684730686/113101/a62d7df2/561f5164N5d57d1fd.jpg!q80.dpg','50','10.0');
