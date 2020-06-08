@@ -9,7 +9,9 @@ package com.study.shop.domain;
  *     `num` int NOT NULL DEFAULT '0' COMMENT '库存',
  *     `price` DECIMAL(10, 2) NOT NULL DEFAULT '0.00' COMMENT '价格',
  */
+
 public class Product {
+
 
     private int id;
     private String title;

@@ -1,12 +1,15 @@
 package com.study.shop;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.study.shop.domain.Admin;
 import com.study.shop.domain.User;
 import com.study.shop.mapper.AdminMapper;
 import com.study.shop.mapper.UserMapper;
+import com.study.shop.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -14,11 +17,34 @@ import java.util.List;
 class DemoApplicationTests {
 
 	@Autowired
-	private AdminMapper adminMapper;
+	private UserMapper userMapper;
+
+	@Autowired
+	private UserService UserService;
 
 	@Test
 	public void testSelect() {
-		Admin admin = adminMapper.selectById(1);
-		System.out.println(admin);
+//		User user = UserMapper.selectById(1);
+//		String password = user.getPassword();
+//		System.out.println("password:"+password);
+//		String string = "123456";
+//		BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
+//		String hashPass = bcryptPasswordEncoder.encode(string);
+//		System.out.println(string+":"+hashPass);
+//		boolean f = bcryptPasswordEncoder.matches("123456",password);
+//		System.out.println(f);
+		User user = userMapper.selectById(1);
+		System.out.println(user);
+
+	}
+
+	@Test
+	public void testSelect2(){
+		//查询所有表信息
+		List<User> list = userMapper.selectList(null);
+		for (User user: list) {
+			System.out.println(user);
+		}
+
 	}
 }

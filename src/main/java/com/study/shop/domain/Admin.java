@@ -1,5 +1,9 @@
 package com.study.shop.domain;
 
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 /**
  *      管理员信息表
  *     `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -9,8 +13,10 @@ package com.study.shop.domain;
  *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_admin' COMMENT '权限',
  */
 
+
 public class Admin {
 
+    @TableId(value = "id",type= IdType.AUTO)
     private int id;
     private String username;
     private String password;

@@ -1,5 +1,10 @@
 package com.study.shop.domain;
 
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 /**
  *      用户信息表
  *     `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -11,6 +16,7 @@ package com.study.shop.domain;
 
 public class User {
 
+    @TableId(value = "id",type= IdType.AUTO)
     private int id;
     private String username;
     private String password;
