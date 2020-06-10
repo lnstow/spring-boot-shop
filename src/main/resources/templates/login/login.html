@@ -14,8 +14,8 @@
         <div th:if="${param.error}" style="color: red;height: 40px;text-align: left;font-size: 1.1em">
             <img th:src="@{/login/img/loginError.jpg}" width="20px">用户名或密码错误，请重新登录！
         </div>
-        <input type="text" name="name" class="form-control" placeholder="用户名" required="" autofocus="">
-        <input type="password" name="pwd" class="form-control" placeholder="密码" required="">
+        <input type="text" name="username" class="form-control" placeholder="用户名" required="" autofocus="">
+        <input type="password" name="password" class="form-control" placeholder="密码" required="">
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" name="rememberme"> 记住我
