@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
     `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
     `username` varchar(20) NOT NULL DEFAULT '' COMMENT '管理员账号',
-    `password` varchar(20) NOT NULL DEFAULT '' COMMENT '管理员密码',
+    `password` varchar(150) NOT NULL DEFAULT '' COMMENT '管理员密码',
     `email` varchar(30) NOT NULL DEFAULT '' COMMENT '管理员邮箱',
     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_admin' COMMENT '权限',
     PRIMARY KEY (`id`),
@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
     `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
     `username` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '用户名',
-    `password` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '用户密码',
+    `password` VARCHAR(150) NOT NULL DEFAULT '' COMMENT '用户密码',
     `email` VARCHAR(30) NOT NULL DEFAULT '' COMMENT '用户邮箱',
     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_user' COMMENT '权限',
     PRIMARY KEY (`id`),
@@ -37,4 +37,5 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '商品表';
 
 
-insert into `product`(`title`,`cover`,`num`,`price`) values ('西瓜','https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180524/95e445560f9c4f5494aa0a304635ffce.jpeg','100','20.0'),('苹果','https://m.360buyimg.com/mobilecms/s750x750_jfs/t2086/31/684730686/113101/a62d7df2/561f5164N5d57d1fd.jpg!q80.dpg','50','10.0');
+insert into `product` values ('0','西瓜','https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180524/95e445560f9c4f5494aa0a304635ffce.jpeg','100','20.0'),('0','苹果','https://m.360buyimg.com/mobilecms/s750x750_jfs/t2086/31/684730686/113101/a62d7df2/561f5164N5d57d1fd.jpg!q80.dpg','50','10.0');
+insert into `user`(`id`,`username`,`password`) values ('0','test','$2a$10$qI5XS7bi7zbo136ZlalUtudkRKINrMuxTdHQcjC/tpeQOeBbMhUW.');

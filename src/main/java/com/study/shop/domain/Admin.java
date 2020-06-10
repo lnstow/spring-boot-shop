@@ -1,6 +1,5 @@
 package com.study.shop.domain;
 
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
@@ -12,7 +11,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
  *     `email` varchar(30) NOT NULL DEFAULT '' COMMENT '管理员邮箱',
  *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_admin' COMMENT '权限',
  */
-
 
 public class Admin {
 

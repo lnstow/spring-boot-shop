@@ -13,9 +13,9 @@ public class LoginController {
     }
 
     // 向用户注册页面跳转
-    @GetMapping("/userRegistered")
-    public String toRegistered() {
-        return "registered/registered";
+    @GetMapping("/userRegister")
+    public String toRegister() {
+        return "register/register";
     }
 
 }

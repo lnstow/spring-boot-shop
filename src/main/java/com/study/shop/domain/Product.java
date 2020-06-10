@@ -1,5 +1,7 @@
 package com.study.shop.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 /**
  *      商品表
@@ -12,7 +14,7 @@ package com.study.shop.domain;
 
 public class Product {
 
-
+    @TableId(value = "id",type= IdType.AUTO)
     private int id;
     private String title;
     private String cover;

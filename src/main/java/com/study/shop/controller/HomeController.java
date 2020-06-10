@@ -3,7 +3,7 @@ package com.study.shop.controller;
 import java.util.List;
 
 import com.study.shop.domain.Product;
-import com.study.shop.mapper.ProductMapper;
+import com.study.shop.service.impl.ProductServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     @Autowired
-    ProductMapper productMapper;
+    ProductServiceImpl productService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = { "/", "/index" })
     public String home(Model model) {
-        List<Product> producList = productMapper.selectList(null);
-        for (int i = 0; i < 10; i++)
-            producList.add(producList.get(i % 2));
+        List<Product> producList = productService.list();
+        if (producList.size() >= 2)
+            for (int i = 0; i < 10; i++)
+                producList.add(producList.get(i % 2));
         model.addAttribute("productList", producList);
         return "index";
     }

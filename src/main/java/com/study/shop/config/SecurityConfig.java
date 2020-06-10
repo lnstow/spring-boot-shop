@@ -58,46 +58,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // this.authorizeRequests(http);
-        // this.formLogin(http);
+        this.authorizeRequests(http);
+        this.formLogin(http);
         // this.logout(http);
         // this.rememberMe(http);
-        //http.authorizeRequests().anyRequest().permitAll().and().logout().permitAll();
-        // http.csrf().disable();
 
-
-        http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login/**").permitAll()
-                .anyRequest().authenticated();
-
-        //自定义用户登入
-        http.formLogin()
-                .loginPage("/userLogin").permitAll()
-                .usernameParameter("name").passwordParameter("pwd")
-                .defaultSuccessUrl("/")
-                .failureUrl("/userLogin?error");
-
+        http.csrf().disable();
     }
 
-//    // 自定义用户授权管理
-//    private void authorizeRequests(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                // 放行
-//                .antMatchers("/").permitAll()
-//                // 需要对static文件夹下静态资源进行统一放行
-//                .antMatchers("/login/**").permitAll().antMatchers("/detail/common/**").hasRole("common")
-//                .antMatchers("/detail/vip/**").hasRole("vip").anyRequest().authenticated();
-//        // .and()
-//        // .formLogin();
-//    }
-//
-//    // 自定义用户登录
-//    private void formLogin(HttpSecurity http) throws Exception {
-//        http.formLogin().loginPage("/userLogin").permitAll().usernameParameter("name").passwordParameter("pwd")
-//                .defaultSuccessUrl("/").failureUrl("/userLogin?error");
-//    }
-//
+   // 自定义用户授权管理
+   private void authorizeRequests(HttpSecurity http) throws Exception {
+        // http.authorizeRequests().anyRequest().permitAll().and().logout().permitAll();
+       http.authorizeRequests()
+               // 放行
+               .antMatchers("/").permitAll()
+               // 需要对static文件夹下静态资源进行统一放行
+               .antMatchers("/index/**").permitAll()
+               .antMatchers("/login/**").permitAll()
+               .antMatchers("/test").permitAll()
+            //    .antMatchers("/detail/common/**").hasRole("common")
+            //    .antMatchers("/detail/vip/**").hasRole("vip")
+               .anyRequest().authenticated();
+   }
+
+   // 自定义用户登录
+   private void formLogin(HttpSecurity http) throws Exception {
+       http.formLogin()
+       .loginPage("/userLogin").permitAll()
+       .usernameParameter("name").passwordParameter("pwd")
+               .defaultSuccessUrl("/").failureUrl("/userLogin?error");
+   }
+
 //    // 自定义用户退出控制
 //    private void logout(HttpSecurity http) throws Exception {
 //        http.logout().logoutUrl("/mylogout").logoutSuccessUrl("/");
