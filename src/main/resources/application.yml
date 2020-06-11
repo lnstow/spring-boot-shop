@@ -8,5 +8,4 @@ spring:
     password: 123456
   thymeleaf:
     cache: false
-    mode: HTML5
 
