@@ -6,6 +6,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.study.shop.domain.User;
 import com.study.shop.mapper.UserMapper;
+import com.study.shop.utils.UserUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,6 +35,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         list.add(new SimpleGrantedAuthority(role));
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(),
                 user.getPassword(), list);
+        UserUtils.userName = user.getUsername();
+        UserUtils.userId = user.getId();
         return userDetails;
     }
 }

@@ -24,9 +24,7 @@ public class CartController {
 
     @GetMapping(value = "/add/{id}")
     public String addToCart(@PathVariable("id") int id, Model model) {
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("username", UserUtils.getUserName());
-        User user = userService.getOne(wrapper);
+        User user = userService.getById(UserUtils.userId);
         QueryWrapper<Cart> wrapper2 = new QueryWrapper<>();
         wrapper2.eq("userid", user.getId());
         wrapper2.eq("productid", id);

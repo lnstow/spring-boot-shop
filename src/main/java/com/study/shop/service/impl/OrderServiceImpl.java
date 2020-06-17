@@ -7,6 +7,13 @@ import com.study.shop.service.OrderService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService{
-
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
+    public int addOne(Order order) {
+        OrderMapper orderMapper = getBaseMapper();
+        Integer id = orderMapper.getLastId();
+        if (id == null)
+            id = 0;
+        order.setId(id + 1);
+        return orderMapper.addOne(order);
+    }
 }

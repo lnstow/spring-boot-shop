@@ -1,5 +1,7 @@
 package com.study.shop.domain;
 
+import java.math.BigDecimal;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
@@ -19,7 +21,7 @@ public class Order {
 
     @TableId(value = "id",type= IdType.AUTO)
     private int id;
-    private float amount;
+    private BigDecimal amount;
     private String status;
     private int progress;
     private int userid;
@@ -32,11 +34,11 @@ public class Order {
         this.id = id;
     }
 
-    public float getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

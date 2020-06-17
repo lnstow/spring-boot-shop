@@ -4,6 +4,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserUtils {
+    public static String userName;
+    public static int userId;
+
     public static String getUserName() {
         Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if ("anonymousUser".equals(object))
