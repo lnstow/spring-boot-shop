@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
     `age` TINYINT NOT NULL DEFAULT '0' COMMENT '年龄',
     `sex` varchar(4) NOT NULL DEFAULT '男' COMMENT '性别',
     `telephone` VARCHAR(30) NOT NULL DEFAULT '' COMMENT '电话',
-    `address` TEXT NOT NULL DEFAULT '' COMMENT '详细地址',
+    `address` TEXT COMMENT '详细地址',
     `userid` int NOT NULL DEFAULT '0' COMMENT '用户id',
     PRIMARY KEY (`id`),
     UNIQUE profile_userid(`userid`),
@@ -56,13 +56,13 @@ DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '订单id',
     `amount` DECIMAL(10, 2) NOT NULL DEFAULT '0.00' COMMENT '订单总价',
-    `status` varchar(12) NOT NULL DEFAULT '0' COMMENT '订单状态',
+    `status` varchar(12) NOT NULL DEFAULT '待支付' COMMENT '订单状态',
     `progress` TINYINT NOT NULL DEFAULT '0' COMMENT '快递进度',
     -- `expressno` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '快递单号',
     -- `tradeno` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '支付交易号',
     `userid` int NOT NULL DEFAULT '0' COMMENT '下单人id',
     KEY order_userid(`userid`),
-    check (`status` in (`已完成`,`已取消`,`待支付`,`待收货`))
+    check (`status` in ('已完成','已取消','待支付','待收货'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '订单表';
 
 DROP TABLE IF EXISTS `order_detail`;
