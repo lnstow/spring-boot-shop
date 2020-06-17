@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController {
@@ -24,6 +25,12 @@ public class HomeController {
                 producList.add(producList.get(i % 2));
         model.addAttribute("productList", producList);
         return "index";
+    }
+
+    @GetMapping(value = "/product/{id}")
+    public String product(@PathVariable("id") int id, Model model) {
+        model.addAttribute("product", productService.getById(id));
+        return "product/product";
     }
 
 }

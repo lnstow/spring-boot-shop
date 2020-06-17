@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private void authorizeRequests(HttpSecurity http) throws Exception {
         // http.authorizeRequests().anyRequest().permitAll().and().logout().permitAll();
         String[] requestPath = { "/", "/test", "/userRegister" };
-        String[] resources = { "/index/**", "/login/**" };
+        String[] resources = { "/index/**", "/login/**", "/product/**" };
         http.authorizeRequests()
                 // 放行
                 .antMatchers(requestPath).permitAll()

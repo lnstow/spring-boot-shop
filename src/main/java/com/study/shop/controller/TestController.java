@@ -1,8 +1,10 @@
 package com.study.shop.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.study.shop.utils.UserUtils;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
@@ -12,6 +14,7 @@ public class TestController {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String pwd = encoder.encode("test");
         System.out.println(encoder.matches("test", pwd));
+        System.out.println(UserUtils.getUserName());
         return pwd;
     }
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <th>商品id</th>
+                <th>商品数量</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="cart : ${cartList}">
+                <td th:text="${cart.productid}"></td>
+                <td th:text="${cart.num}"></td>
+                <td>
+                    <a th:href="@{'/cart/del/'+${cart.id}}">删除</a>
+                    <!-- <a th:href="@{'/cart/update/'+${cart.id}}">修改</a> -->
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

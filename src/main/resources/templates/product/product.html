@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品</title>
+</head>
+<body>
+    <div>
+        <p th:text="'商品名：'+${product.title}"></p>
+        <img style="width: 160px;height: 160px;" th:src="${product.cover}" alt="">
+        <p th:text="'价格：'+${product.price}"></p>
+        <p th:text="'库存：'+${product.num}"></p>
+        <a th:href="@{'/cart/add/'+${product.id}}">加入购物车</a>
+        <a th:href="@{'/order/add/'+${product.id}}">立即购买</a>
+    </div>
+</body>
+</html>
