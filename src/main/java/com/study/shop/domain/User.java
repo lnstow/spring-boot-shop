@@ -2,6 +2,7 @@ package com.study.shop.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
 
 /**
  *      用户信息表
@@ -11,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
  *     `email` VARCHAR(30) NOT NULL DEFAULT '' COMMENT '用户邮箱',
  *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_user' COMMENT '权限',
  */
-
+@Data
 public class User {
 
     @TableId(value = "id",type= IdType.AUTO)

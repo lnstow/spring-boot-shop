@@ -43,7 +43,7 @@ public class LoginController {
             // 重复注册会抛出异常
             userService.save(user);
         } catch (Exception e) {
-            attr.addFlashAttribute("error", "用户名已注册，请更换！");
+            attr.addFlashAttribute("error", "此用户已注册，请更换！");
             attr.addFlashAttribute("user", user);
             return "redirect:/userRegister";
         }

@@ -5,20 +5,20 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
- *      商品表
- *     `id` int NOT NULL AUTO_INCREMENT COMMENT '商品id',
- *     `title` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '商品名',
- *     `cover` VARCHAR(200) NOT NULL DEFAULT '' COMMENT '封面图',
- *     `num` int NOT NULL DEFAULT '0' COMMENT '库存',
- *     `price` DECIMAL(10, 2) NOT NULL DEFAULT '0.00' COMMENT '价格',
+ *      订单详情表
+ *     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键id',
+ *     `orderid` int NOT NULL DEFAULT '0' COMMENT '订单id',
+ *     `productid` int NOT NULL DEFAULT '0' COMMENT '商品id',
+ *     `num` INT NOT NULL DEFAULT '0' COMMENT '商品数量',
+ *     `price` DECIMAL(10, 2) NOT NULL DEFAULT '0.00' COMMENT '商品价格',
  */
 @Data
-public class Product {
+public class OrderDetail {
 
     @TableId(value = "id",type= IdType.AUTO)
     private int id;
-    private String title;
-    private String cover;
+    private int orderid;
+    private int productid;
     private int num;
     private float price;
 
@@ -30,20 +30,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public int getOrderid() {
+        return orderid;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setOrderid(int orderid) {
+        this.orderid = orderid;
     }
 
-    public String getCover() {
-        return cover;
+    public int getProductid() {
+        return productid;
     }
 
-    public void setCover(String cover) {
-        this.cover = cover;
+    public void setProductid(int productid) {
+        this.productid = productid;
     }
 
     public int getNum() {
@@ -64,12 +64,13 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "OrderDetail{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", cover='" + cover + '\'' +
+                ", orderid=" + orderid +
+                ", productid=" + productid +
                 ", num=" + num +
                 ", price=" + price +
                 '}';
     }
+
 }

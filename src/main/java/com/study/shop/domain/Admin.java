@@ -2,6 +2,7 @@ package com.study.shop.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
 
 /**
  *      管理员信息表
@@ -11,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
  *     `email` varchar(30) NOT NULL DEFAULT '' COMMENT '管理员邮箱',
  *     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_admin' COMMENT '权限',
  */
-
+@Data
 public class Admin {
 
     @TableId(value = "id",type= IdType.AUTO)

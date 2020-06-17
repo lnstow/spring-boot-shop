@@ -2,8 +2,10 @@ package com.study.shop;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.study.shop.domain.Admin;
+import com.study.shop.domain.OrderDetail;
 import com.study.shop.domain.User;
 import com.study.shop.mapper.AdminMapper;
+import com.study.shop.mapper.OrderDetailMapper;
 import com.study.shop.mapper.UserMapper;
 import com.study.shop.service.UserService;
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,9 @@ class DemoApplicationTests {
 	private UserMapper userMapper;
 
 	@Autowired
+	private OrderDetailMapper orderDetailMapper;
+
+	@Autowired
 	private UserService UserService;
 
 	@Test
@@ -33,8 +38,8 @@ class DemoApplicationTests {
 //		System.out.println(string+":"+hashPass);
 //		boolean f = bcryptPasswordEncoder.matches("123456",password);
 //		System.out.println(f);
-		User user = userMapper.selectById(1);
-		System.out.println(user);
+		OrderDetail orderDetail = orderDetailMapper.selectById(1);
+		System.out.println(orderDetail);
 
 	}
 
