@@ -18,6 +18,7 @@
                 <td th:text="${cart.num}"></td>
                 <td>
                     <a th:href="@{'/cart/del/'+${cart.id}}">删除</a>
+                    <a th:href="@{'/cart/buy/'+${cart.id}+${cart.num}}">购买</a>
                     <!-- <a th:href="@{'/cart/update/'+${cart.id}}">修改</a> -->
                 </td>
             </tr>

@@ -2,7 +2,6 @@ package com.study.shop.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.study.shop.domain.Order;
-
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -15,4 +14,5 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     @Select("select max(id) from `order`")
     public Integer getLastId();
+
 }
