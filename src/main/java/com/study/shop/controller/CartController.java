@@ -91,9 +91,65 @@ public class CartController {
         return "redirect:/cart";
     }
 
+    //全部购买
     @PostMapping(value = "/buyAll")
     public String buyAll() {
-        // TODO 点击购买所有东西，整出来
+
+        //获取当前用户id
+        int UserId = UserUtils.getCurrentUser(userService).getId();
+        List<Cart> cartList = cartService.list(new QueryWrapper<Cart>().eq("userid", UserId));
+        //得到有几条商品
+        int size = cartList.size();
+        //全部商品总价
+        BigDecimal maxPrice=new BigDecimal("0");
+
+        //获得全部商品总价
+        for (int i=0;i<size;i++){
+            Cart cart = cartList.get(i);
+            //查出商品购买量
+            int num = cart.getNum();
+            //查出商品价格
+            int productid = cart.getProductid();
+            Product product = productService.getById(productid);
+            BigDecimal price = product.getPrice();
+            //得到总价
+            maxPrice.add(price.multiply(new BigDecimal(num)));
+        }
+
+
+        // 生成订单
+        Order order = new Order();
+        order.setAmount(maxPrice);
+        order.setUserid(UserUtils.getCurrentUser(userService).getId());
+        orderService.addOne(order);
+
+        for (int i=0;i<size;i++){
+
+            Cart cart = cartList.get(i);
+            int productid = cart.getProductid();
+            int num = cart.getNum();
+
+            // 将商品库存减去用户所购买的数量
+            Product product = productService.getById(productid);
+            int num1 = product.getNum() - num;
+            product.setNum(num1);
+            productService.updateById(product);
+
+            // 添加商品详情表
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setOrderid(order.getId());
+            orderDetail.setProductid(product.getId());
+
+            //所要购买的数量
+            int a = num;
+            orderDetail.setNum(a);
+            //商品价格乘以商品数量
+            BigDecimal decimal = new BigDecimal(a);
+            orderDetail.setPrice(product.getPrice().multiply(decimal));
+            orderDetailService.save(orderDetail);
+
+        }
+
         return "redirect:/cart";
     }
 
@@ -113,15 +169,16 @@ public class CartController {
         //获取当前用户id
         int UserId = UserUtils.getCurrentUser(userService).getId();
         //查询出当前用户需要加一商品的购物车id
-        int cartId = cartService.getCartIdService(UserId, id);
+        Cart cart = cartService.getOne(new QueryWrapper<Cart>().eq("userid",UserId).eq("productid",id));
+        int cartId = cart.getId();
         //获取当前商品的购物车列
-        Cart cart = cartService.getById(cartId);
+        Cart cart1 = cartService.getById(cartId);
         //购物车当前商品购买量加一
         cart.setNum(cart.getNum()+1);
         //更新当前商品列
-        cartService.updateById(cart);
+        cartService.updateById(cart1);
 
-        return "cart/cart";
+        return "redirect:/cart";
     }
 
     //购物车列表的单个商品减一
@@ -131,15 +188,16 @@ public class CartController {
         //获取当前用户id
         int UserId = UserUtils.getCurrentUser(userService).getId();
         //查询出当前用户需要减一商品的购物车id
-        int cartId = cartService.getCartIdService(UserId, id);
+        Cart cart = cartService.getOne(new QueryWrapper<Cart>().eq("userid",UserId).eq("productid",id));
+        int cartId =cart.getId();
         //获取当前商品的购物车列
-        Cart cart = cartService.getById(cartId);
+        Cart cart1 = cartService.getById(cartId);
         //购物车当前商品购买量减一
         cart.setNum(cart.getNum()-1);
         //更新当前商品列
-        cartService.updateById(cart);
+        cartService.updateById(cart1);
 
-        return "cart/cart";
+        return "redirect:/cart";
     }
 
     //从购物车删除当前用户所选中的商品
@@ -149,11 +207,12 @@ public class CartController {
         //获取当前用户id
         int UserId = UserUtils.getCurrentUser(userService).getId();
         //查询出当前用户需要删除商品的购物车id
-        int cartId = cartService.getCartIdService(UserId, id);
+        Cart cart = cartService.getOne(new QueryWrapper<Cart>().eq("userid",UserId).eq("productid",id));
+        int cartId =cart.getId();
         //购物车将当前商品删除
         cartService.removeById(cartId);
 
-        return "cart/cart";
+        return "redirect:/cart";
     }
 
 
