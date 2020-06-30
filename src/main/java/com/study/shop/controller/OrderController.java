@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 import com.study.shop.domain.Order;
 import com.study.shop.domain.OrderDetail;
 import com.study.shop.domain.Product;
+import com.study.shop.service.UserService;
 import com.study.shop.service.impl.OrderDetailServiceImpl;
 import com.study.shop.service.impl.OrderServiceImpl;
 import com.study.shop.service.impl.ProductServiceImpl;
+import com.study.shop.service.impl.UserServiceImpl;
 import com.study.shop.utils.UserUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class OrderController {
     @Autowired
     OrderDetailServiceImpl orderDetailService;
 
+    @Autowired
+    UserServiceImpl userService;
+
     @GetMapping(value = "/add/{id}")
     public String addToOrder(@PathVariable("id") int id, Model model) {
 
@@ -41,7 +46,7 @@ public class OrderController {
         // 生成订单
         Order order = new Order();
         order.setAmount(product.getPrice().multiply(new BigDecimal("1")));
-        order.setUserid(UserUtils.userId);
+        order.setUserid(UserUtils.getCurrentUser(userService).getId());
         orderService.addOne(order);
          
         // 添加商品详情表

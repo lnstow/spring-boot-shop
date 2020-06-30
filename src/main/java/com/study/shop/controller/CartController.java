@@ -10,9 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/cart")
@@ -33,7 +38,7 @@ public class CartController {
 
     @GetMapping(value = "/add/{id}")
     public String addToCart(@PathVariable("id") int id, Model model) {
-        User user = userService.getById(UserUtils.userId);
+        User user = UserUtils.getCurrentUser(userService);
         QueryWrapper<Cart> wrapper2 = new QueryWrapper<>();
         wrapper2.eq("userid", user.getId());
         wrapper2.eq("productid", id);
@@ -52,15 +57,11 @@ public class CartController {
             cartService.updateById(cart);
         }
 
-
-        QueryWrapper<Cart> wrapper3 = new QueryWrapper<>();
-        wrapper3.eq("userid", user.getId());
-        model.addAttribute("cartList", cartService.list(wrapper3));
-        return "cart/cart";
+        return "redirect:/cart";
     }
 
     //从购物车下单    ps：只能选一种物品下单
-    @GetMapping(value = "/cart/buy/{id}{num}")
+    @GetMapping(value = "/buy/{id}{num}")
     public String buyCart(@PathVariable("id") int id, @PathVariable("num") int num, Model model){
 
         // 将商品库存减去用户所购买的数量
@@ -71,7 +72,7 @@ public class CartController {
         // 生成订单
         Order order = new Order();
         order.setAmount(product.getPrice().multiply(new BigDecimal("1")));
-        order.setUserid(UserUtils.userId);
+        order.setUserid(UserUtils.getCurrentUser(userService).getId());
         orderService.addOne(order);
 
         // 添加商品详情表
@@ -86,7 +87,21 @@ public class CartController {
         orderDetail.setPrice(product.getPrice().multiply(i));
         orderDetailService.save(orderDetail);
 
-        return "cart/cart";
+        return "redirect:/cart";
     }
 
+    @PostMapping(value = "/buyAll")
+    public String buyAll() {
+        // TODO 点击购买所有东西，整出来
+        return "redirect:/cart";
+    }
+
+    @GetMapping(value="")
+    public String cart(Model model) {
+        QueryWrapper<Cart> wrapper3 = new QueryWrapper<>();
+        wrapper3.eq("userid", UserUtils.getCurrentUser(userService).getId());
+        model.addAttribute("cartList", cartService.list(wrapper3));
+        return "cart/cart";
+    }
+    
 }

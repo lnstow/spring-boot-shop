@@ -11,11 +11,12 @@ public class TestController {
 
     @GetMapping(value = "/test")
     public String test() {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String pwd = encoder.encode("test");
-        System.out.println(encoder.matches("test", pwd));
-        System.out.println(UserUtils.getUserName());
-        return pwd;
+        // BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // String pwd = encoder.encode("test");
+        // System.out.println(encoder.matches("test", pwd));
+        String username = UserUtils.getUserName();
+        System.out.println(username);
+        return username;
     }
 
 }

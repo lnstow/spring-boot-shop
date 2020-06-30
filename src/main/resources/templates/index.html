@@ -15,9 +15,16 @@
             <div class="div111">
                 <p>网上超市logo</p>
             </div>
-            <div class="div112">
+            <div class="div112" sec:authorize="isAnonymous()">
                 <a th:href="@{/userLogin}">用户登录</a>
                 <a th:href="@{/userRegister}">用户注册</a>
+            </div>
+            <div class="div112" sec:authorize="isAuthenticated()">
+                <span sec:authentication="name"></span>
+                <span sec:authentication="principal.authorities"></span>
+                <form th:action="@{/mylogout}" method="post">
+                    <input th:type="submit" th:value="登出" />
+                </form>
             </div>
 
             <div class="div113">搜索</div>
