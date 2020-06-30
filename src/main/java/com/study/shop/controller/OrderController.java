@@ -38,10 +38,11 @@ public class OrderController {
     @GetMapping(value = "/add/{id}")
     public String addToOrder(@PathVariable("id") int id, Model model) {
 
-        // 将商品库存减一
+        //将商品库存减一
         Product product = productService.getById(id);
         int num = product.getNum() - 1;
         product.setNum(num);
+        productService.updateById(product);
 
         // 生成订单
         Order order = new Order();
@@ -61,8 +62,9 @@ public class OrderController {
         orderDetail.setPrice(product.getPrice().multiply(i));
         orderDetailService.save(orderDetail);
 
-
-
         return "cart/cart";
     }
+
+
+
 }

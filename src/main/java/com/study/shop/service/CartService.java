@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CartService extends IService<Cart> {
 
+    public int getCartIdService(int userid,int productid);
+
 }
