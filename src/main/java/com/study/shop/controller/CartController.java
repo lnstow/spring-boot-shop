@@ -161,47 +161,24 @@ public class CartController {
         return "cart/cart";
     }
 
-
-    //购物车列表的单个商品加一
-    @GetMapping(value = "/add/{id}")
-    public String inCart(@PathVariable("id") int id, Model model) {
-
-        //获取当前用户id
-        int UserId = UserUtils.getCurrentUser(userService).getId();
-        //查询出当前用户需要加一商品的购物车id
-        Cart cart = cartService.getOne(new QueryWrapper<Cart>().eq("userid",UserId).eq("productid",id));
-        int cartId = cart.getId();
-        //获取当前商品的购物车列
-        Cart cart1 = cartService.getById(cartId);
-        //购物车当前商品购买量加一
-        cart.setNum(cart.getNum()+1);
-        //更新当前商品列
-        cartService.updateById(cart1);
-
-        return "redirect:/cart";
-    }
-
     //购物车列表的单个商品减一
-    @GetMapping(value = "/add/{id}")
+    @GetMapping(value = "/sub/{id}")
     public String lessCart(@PathVariable("id") int id, Model model) {
 
         //获取当前用户id
         int UserId = UserUtils.getCurrentUser(userService).getId();
         //查询出当前用户需要减一商品的购物车id
         Cart cart = cartService.getOne(new QueryWrapper<Cart>().eq("userid",UserId).eq("productid",id));
-        int cartId =cart.getId();
-        //获取当前商品的购物车列
-        Cart cart1 = cartService.getById(cartId);
         //购物车当前商品购买量减一
         cart.setNum(cart.getNum()-1);
         //更新当前商品列
-        cartService.updateById(cart1);
+        cartService.updateById(cart);
 
         return "redirect:/cart";
     }
 
     //从购物车删除当前用户所选中的商品
-    @GetMapping(value = "/add/{id}")
+    @GetMapping(value = "/del/{id}")
     public String deleteCart(@PathVariable("id") int id, Model model){
 
         //获取当前用户id
