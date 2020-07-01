@@ -6,7 +6,9 @@
     <title>商品</title>
 </head>
 <body>
-    <div>
+    <div th:replace="head/head::head"></div>
+
+    <div style="text-align: center;">
         <p th:text="'商品名：'+${product.title}"></p>
         <img style="width: 160px;height: 160px;" th:src="${product.cover}" alt="">
         <p th:text="'价格：'+${product.price}"></p>

@@ -30,11 +30,15 @@ public class HomeController {
     ProfileServiceImpl profileService;
 
     @GetMapping(value = { "/", "/index" })
-    public String home(Model model) {
-        List<Product> producList = productService.list();
-        if (producList.size() >= 2)
-            for (int i = 0; i < 10; i++)
-                producList.add(producList.get(i % 2));
+    public String home(Model model, String key) {
+        List<Product> producList;
+        if (key == null || key.isEmpty()) {
+            producList = productService.list();
+            if (producList.size() >= 2)
+                for (int i = 0; i < 8; i++)
+                    producList.add(producList.get(i % 2));
+        } else
+            producList = productService.list(new QueryWrapper<Product>().like("title", key));
         model.addAttribute("productList", producList);
         return "index";
     }

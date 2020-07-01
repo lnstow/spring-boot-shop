@@ -17,7 +17,9 @@
             <div class="div211" th:each="product : ${productList}">
                 <a th:href="@{'/product/'+${product.id}}">
                     <img style="width: 160px;height: 160px;" th:src="${product.cover}" alt=""></a>
-                <p style="font-size: larger;text-align: center;" th:text="${product.title}"></p>
+                <p style="font-size: larger;text-align: center;">
+                    <span th:text="${product.title}"></span>&nbsp;
+                    <span th:text="${product.price}"></span></p>
             </div>
         </div>
     </div>
