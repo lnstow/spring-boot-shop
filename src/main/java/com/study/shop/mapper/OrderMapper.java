@@ -7,6 +7,7 @@ import com.study.shop.domain.Order;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
@@ -19,5 +20,11 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     @Select("select * from `order` where userid = #{userid}")
     public List<Order> listByUserId(int userid);
+
+    @Select("SELECT * FROM `order`")
+    public List<Order> listAll();
+
+    @Update("update `order` set status=#{status},progress=#{progress} where id=#{id}")
+    public int updOrder(Order order);
 
 }

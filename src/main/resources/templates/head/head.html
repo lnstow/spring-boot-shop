@@ -14,7 +14,9 @@
         <div class="div11">
             <div class="div111">
                 <a th:href="@{/}">
-                <p>网上超市logo</p></a>
+                    <!-- <p>网上超市logo</p> -->
+                    <img th:src="@{/index/logo.jpg}">
+                </a>
             </div>
             <div class="div112" sec:authorize="isAnonymous()">
                 <a th:href="@{/userLogin}">用户登录</a>
