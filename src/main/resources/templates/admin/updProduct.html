@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改商品</title>
+</head>
+<body >
+    <form style="text-align: center;" th:action="@{/admin/product/upd}" th:method="post" >
+        <p style="display: none;">商品id<input type="text" name="id" th:value="${product?.id}" placeholder="商品id"></p>
+        <p>商品名<input type="text" name="title" th:value="${product?.title}" placeholder="商品名"></p>
+        <p>商品图<input type="text" name="cover" th:value="${product?.cover}" placeholder="商品图"></p>
+        <p>商品数量<input type="text" name="num" th:value="${product?.num}" placeholder="商品数量"></p>
+        <p>商品价格<input type="text" name="price" th:value="${product?.price}" placeholder="商品价格"></p>
+        <p><button type="submit" >修改</button></p>
+    </form>
+</body>
+</html>

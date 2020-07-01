@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS `user` (
     `email` VARCHAR(30) NOT NULL DEFAULT '' COMMENT '用户邮箱',
     `authority` varchar(20) NOT NULL DEFAULT 'ROLE_user' COMMENT '权限',
     PRIMARY KEY (`id`),
-    UNIQUE user_username(`username`)
+    UNIQUE user_username(`username`),
+    check (`authority` in ('ROLE_user','ROLE_vip','ROLE_admin','ROLE_root'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '会员表';
 
 DROP TABLE IF EXISTS `product`;
@@ -35,8 +36,22 @@ CREATE TABLE IF NOT EXISTS `product` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT '商品表';
 
-insert into `product` values ('0','西瓜','https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180524/95e445560f9c4f5494aa0a304635ffce.jpeg','100','20.0'),('0','苹果','https://m.360buyimg.com/mobilecms/s750x750_jfs/t2086/31/684730686/113101/a62d7df2/561f5164N5d57d1fd.jpg!q80.dpg','50','10.0');
+insert into `product` values ('0','西瓜','https://i.loli.net/2020/07/01/qcDNhu95O6d2Qt7.jpg','100','20.0');
+insert into `product` values ('0','苹果','https://i.loli.net/2020/07/01/NU9w8WODaGuSlx3.jpg','50','10.0');
+insert into `product` values ('0','香蕉','https://i.loli.net/2020/07/01/MXH4Qjm2hRLS5JD.jpg','100','10.5');
+insert into `product` values ('0','樱桃','https://i.loli.net/2020/07/01/Bc6yWI7w9ZGVOJU.jpg','100','12.5');
+insert into `product` values ('0','葡萄','https://i.loli.net/2020/07/01/DBUwJMGLCvmjfoP.jpg','100','14.5');
+insert into `product` values ('0','芒果','https://i.loli.net/2020/07/01/9l5t6inQ2EfWVw3.jpg','100','16.5');
+insert into `product` values ('0','橘子','https://i.loli.net/2020/07/01/qANyIwKB3bRaFg5.jpg','100','18.5');
+insert into `product` values ('0','梨子','https://i.loli.net/2020/07/01/JNo97Y53R4bXWjA.png','100','20.5');
+insert into `product` values ('0','菠萝','https://i.loli.net/2020/07/01/eOoHrRN5tSUp149.jpg','100','22.5');
+insert into `product` values ('0','草莓','https://i.loli.net/2020/07/01/QjBLGixdn6NCthF.jpg','100','24.5');
+
 insert into `user`(`id`,`username`,`password`) values ('0','test','$2a$10$qI5XS7bi7zbo136ZlalUtudkRKINrMuxTdHQcjC/tpeQOeBbMhUW.');
+insert into `user`(`id`,`username`,`password`) values ('0','123','$2a$10$fXiwYxE68GXWX.N0tCXr.uCa7/9IKldS33f/dANURSJWlsQrTG5iq');
+insert into `user`(`id`,`username`,`password`,`authority`) values ('0','vip','$2a$10$lk1JXLJ9fWYfg9flEaVqOOPHYjlu54prHgcc0WFCG3LkWUBiVowEm','ROLE_vip');
+insert into `user`(`id`,`username`,`password`,`authority`) values ('0','admin','$2a$10$lwlU45EDqdZQgJrfFslRQe6tAN599BBGG0n.zX.GoGAeb0P06AyNi','ROLE_admin');
+insert into `user`(`id`,`username`,`password`,`authority`) values ('0','root','$2a$10$oFa0wC9iBYfdIl1A9cIoROAycZ8HiFK2XZRNMG6S6ctzn9oGB3UQK','ROLE_root');
 
 DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (

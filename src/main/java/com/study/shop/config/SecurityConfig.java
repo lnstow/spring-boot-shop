@@ -64,11 +64,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private void authorizeRequests(HttpSecurity http) throws Exception {
         // http.authorizeRequests().anyRequest().permitAll().and().logout().permitAll();
         String[] requestPath = { "/", "/test", "/userRegister" };
-        String[] resources = { "/index/**", "/login/**", "/product/**" };
+        String[] resources = { "/index/**", "/login/**", "/product/**", "/head/**" };
         http.authorizeRequests()
                 // 放行
                 .antMatchers(requestPath).permitAll()
                 .antMatchers(resources).permitAll()
+                .antMatchers("/admin/**").hasAnyRole("admin","root")
                 // 需要对static文件夹下静态资源进行统一放行
                 // .antMatchers("/detail/common/**").hasRole("common")
                 // .antMatchers("/detail/vip/**").hasRole("vip")

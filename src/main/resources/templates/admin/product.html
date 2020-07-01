@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理用户</title>
+</head>
+<body>
+    <div th:replace="head/head::head"></div>
+    <div style="text-align: center;">
+        <a style="font-size: 30px;" th:href="@{/admin/product/add}">增加</a>
+        <table style="width: 50%; margin:auto;">
+            <tr>
+                <th>商品id</th>
+                <th>商品名</th>
+                <th>商品图</th>
+                <th>商品数量</th>
+                <th>商品价格</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="product : ${productList}" >
+                <td th:text="${product.id}" ></td>
+                <td th:text="${product.title}" ></td>
+                <td th:text="${product.cover}" ></td>
+                <td th:text="${product.num}" ></td>
+                <td th:text="${product.price}" ></td>
+                <td>
+                    <a th:href="@{'/admin/product/del/'+${product.id}}">删除</a>
+                    <a th:href="@{'/admin/product/upd/'+${product.id}}">修改</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
