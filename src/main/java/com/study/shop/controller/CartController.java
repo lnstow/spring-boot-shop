@@ -113,7 +113,7 @@ public class CartController {
             Product product = productService.getById(productid);
             BigDecimal price = product.getPrice();
             //得到总价
-            maxPrice.add(price.multiply(new BigDecimal(num)));
+            maxPrice=maxPrice.add(price.multiply(new BigDecimal(num)));
         }
 
 
@@ -148,7 +148,14 @@ public class CartController {
             orderDetail.setPrice(product.getPrice().multiply(decimal));
             orderDetailService.save(orderDetail);
 
+            //删除当前用户购物车商品
+            int cartId = cart.getId();
+            cartService.removeById(cartId);
+
         }
+
+
+
 
         return "redirect:/cart";
     }
