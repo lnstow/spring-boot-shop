@@ -1,5 +1,7 @@
 package com.study.shop.mapper;
 
+import java.util.List;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.study.shop.domain.Order;
 import org.apache.ibatis.annotations.Insert;
@@ -14,5 +16,8 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     @Select("select max(id) from `order`")
     public Integer getLastId();
+
+    @Select("select * from `order` where userid = #{userid}")
+    public List<Order> listByUserId(int userid);
 
 }

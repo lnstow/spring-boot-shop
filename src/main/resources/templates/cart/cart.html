@@ -6,9 +6,11 @@
     <title>购物车</title>
 </head>
 <body>
-    <div>
+    <div th:replace="head/head::head"></div>
+
+    <div style="text-align: center;">
         <form th:action="@{/cart/buyAll}" method="post" >
-        <table >
+        <table style="width: 50%; margin:auto;">
             <tr>
                 <th>商品id</th>
                 <th>商品数量</th>
@@ -18,9 +20,9 @@
                 <td th:text="${cart.productid}" ></td>
                 <td th:text="${cart.num}" ></td>
                 <td>
-                    <a th:href="@{'/cart/del/'+${cart.id}}">删除</a>
-                    <a th:href="@{'/cart/add/'+${cart.id}}">加一</a>
-                    <a th:href="@{'/cart/sub/'+${cart.id}}">减一</a>
+                    <a th:href="@{'/cart/del/'+${cart.productid}}">删除</a>
+                    <a th:href="@{'/cart/add/'+${cart.productid}}">加一</a>
+                    <a th:href="@{'/cart/sub/'+${cart.productid}}">减一</a>
                 </td>
             </tr>
         </table>

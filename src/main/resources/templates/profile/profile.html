@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人信息</title>
+</head>
+<body>
+    <div th:replace="head/head::head"></div>
+
+    <form style="text-align: center;" th:action="@{/profile}" th:method="post" >
+        <p style="display: none;">id<input type="text" name="id" th:value="${profile?.id}"></p>
+        <p style="display: none;">userId<input type="text" name="userid" th:value="${profile?.userid}"></p>
+        <p>真实姓名<input type="text" name="truename" th:value="${profile?.truename}" placeholder="真实姓名"></p>
+        <p>年龄<input type="text" name="age" th:value="${profile?.age}" placeholder="年龄"></p>
+        <p>性别<input type="text" name="sex" th:value="${profile?.sex}" placeholder="性别"></p>
+        <p>电话<input type="text" name="telephone" th:value="${profile?.telephone}" placeholder="电话"></p>
+        <p>地址<input type="text" name="address" th:value="${profile?.address}" placeholder="地址"></p>
+        <button type="submit" >修改</button> <a th:href="@{/}"><button type="button">取消</button></a>
+    </form>
+
+</body>
+</html>

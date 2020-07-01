@@ -10,36 +10,8 @@
 </head>
 
 <body>
-    <div class="div1">
-        <div class="div11">
-            <div class="div111">
-                <a th:href="@{/}">
-                <p>网上超市logo</p></a>
-            </div>
-            <div class="div112" sec:authorize="isAnonymous()">
-                <a th:href="@{/userLogin}">用户登录</a>
-                <a th:href="@{/userRegister}">用户注册</a>
-            </div>
-            <div class="div112" sec:authorize="isAuthenticated()">
-                <span sec:authentication="name"></span>
-                <span sec:authentication="principal.authorities"></span>
-                <div sec:authorize="hasAnyRole('user','vip')">
-                    <a th:href="@{/cart}">购物车</a>
-                    <a th:href="@{/order}">我的订单</a>
-                    <a th:href="@{/profile}">个人信息</a>
-                </div>
-                <div sec:authorize="hasAnyRole('admin','root')">
-                    <a th:href="@{/admin/user}">管理用户</a>
-                    <a th:href="@{/admin/product}">管理商品</a>
-                </div>
-                <form th:action="@{/mylogout}" method="post">
-                    <input th:type="submit" th:value="登出" />
-                </form>
-            </div>
+    <div th:replace="head/head::head"></div>
 
-            <div class="div113">搜索</div>
-        </div>
-    </div>
     <div class="div2">
         <div class="div21">
             <div class="div211" th:each="product : ${productList}">

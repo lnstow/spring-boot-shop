@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+</head>
+<body>
+    <div th:replace="head/head::head"></div>
+
+    <div style="text-align: center;">
+        <table style="width: 50%; margin:auto;">
+            <tr>
+                <th>订单id</th>
+                <th>商品id</th>
+                <th>商品数量</th>
+                <th>商品价格</th>
+            </tr>
+            <tr th:each="detail : ${detailList}" >
+                <td th:text="${detail.orderid}" ></td>
+                <td th:text="${detail.productid}" ></td>
+                <td th:text="${detail.num}" ></td>
+                <td th:text="${detail.price}" ></td>
+            </tr>
+        </table>
+        <a style="font-size: 30px;" th:href="@{/order}">返回</a>
+    </div>
+</body>
+</html>

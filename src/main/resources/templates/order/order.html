@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+</head>
+<body>
+    <div th:replace="head/head::head"></div>
+
+    <div style="text-align: center;">
+        <table style="width: 50%; margin:auto;">
+            <tr>
+                <th>订单id</th>
+                <th>订单总价</th>
+                <th>订单状态</th>
+                <th>快递进度</th>
+            </tr>
+            <tr th:each="order : ${orderList}" >
+                <td th:text="${order.id}" ></td>
+                <td th:text="${order.amount}" ></td>
+                <td th:text="${order.status}" ></td>
+                <td th:text="${order.progress}" ></td>
+                <td>
+                    <a th:href="@{'/order/detail/'+${order.id}}">订单详情</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

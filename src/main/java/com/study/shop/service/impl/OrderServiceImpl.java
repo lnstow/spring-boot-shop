@@ -1,5 +1,7 @@
 package com.study.shop.service.impl;
 
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.study.shop.domain.Order;
 import com.study.shop.mapper.OrderMapper;
@@ -15,12 +17,18 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     OrderMapper orderMapper;
 
     public int addOne(Order order) {
-//        OrderMapper orderMapper = getBaseMapper();
+       OrderMapper orderMapper = getBaseMapper();
         Integer id = orderMapper.getLastId();
         if (id == null)
             id = 0;
         order.setId(id + 1);
         return orderMapper.addOne(order);
 
+    }
+
+    @Override
+    public List<Order> listByUserId(int userid) {
+        OrderMapper orderMapper = getBaseMapper();
+        return orderMapper.listByUserId(userid);
     }
 }
